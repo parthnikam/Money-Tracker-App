@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand white #F7F7FF — matches AppColors.white / native splash -->
+    <color name="splash_background">#F7F7FF</color>
+    <!-- Brand accent #EA526F — matches AppColors.primary -->
+    <color name="splash_accent">#EA526F</color>
+	<color name="ic_launcher_background">#F7F7FF</color>
+</resources>

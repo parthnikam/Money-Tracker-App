@@ -1,0 +1,211 @@
+﻿id,date,type,title,amount,category,category_id,account,account_id,payment_method,notes
+65ae43dcb342,2026-07-14 12:16,expense,Twitter premium,213.00,Bills,cat_bills,Main Wallet,card_main,Card,twitter premium
+975807db8620,2026-07-05 10:11,expense,Gym membership,504.00,Personal Care,cat_personal,Main Wallet,card_main,Card,gym membership
+7f219cb2cfdd,2026-07-05 09:08,expense,Google cloud fees,11.00,Education,cat_education,Main Wallet,card_main,Card,google cloud fees
+e50c38f5b886,2026-07-04 12:15,expense,Google cloud usage fees,11.57,Bills,cat_bills,Main Wallet,card_main,Card,Google cloud usage fees
+f9f6fc015378,2026-06-26 10:10,expense,Emergent ai credits,249.00,Education,cat_education,Main Wallet,card_main,Card,emergent ai credits
+df2908a8d160,2026-06-08 09:07,expense,Canva pro sub,199.00,Education,cat_education,Main Wallet,card_main,Card,canva pro sub
+f83a3564190e,2026-06-06 09:06,expense,Google gemini pro,399.00,Education,cat_education,Main Wallet,card_main,Card,google gemini pro
+7e96bb9273a0,2026-06-01 09:05,expense,Gym membership,504.00,Personal Care,cat_personal,Main Wallet,card_main,Card,gym membership
+cecd510b80fc,2026-05-26 18:52,expense,Openai credits 5$,568.00,Bills,cat_bills,Main Wallet,card_main,Card,openai credits 5$
+15de4125db77,2026-05-23 19:34,expense,Uber back to home,720.00,Transportation,cat_transport,Main Wallet,card_main,Card,uber back to home
+74aa36592472,2026-05-23 18:22,expense,Snacks,60.00,Food,cat_food,Main Wallet,card_main,Card,snacks
+e5268d90b39b,2026-05-23 15:07,expense,Uber to airport,550.00,Transportation,cat_transport,Main Wallet,card_main,Card,uber to airport
+6da19180d638,2026-05-18 14:53,expense,Softie,30.00,Food,cat_food,Main Wallet,card_main,Card,softie
+c6344731f909,2026-05-18 13:47,expense,Lunch at CT,110.00,Food,cat_food,Main Wallet,card_main,Card,lunch at CT
+396ef8feda17,2026-05-17 10:59,expense,Snakcs,10.00,Food,cat_food,Main Wallet,card_main,Card,snakcs
+0ef80f23735a,2026-05-16 22:28,expense,Strawberry fizz,115.00,Food,cat_food,Main Wallet,card_main,Card,strawberry fizz
+c1a331f81b1c,2026-05-16 22:28,expense,Lazer tag,380.00,Social,cat_social,Main Wallet,card_main,Card,lazer tag
+7f1721375c16,2026-05-16 22:28,expense,Coming back to hostel,98.00,Transportation,cat_transport,Main Wallet,card_main,Card,coming back to hostel
+0aa29b081e16,2026-05-16 22:27,expense,Uber to go out with athletics team,377.00,Transportation,cat_transport,Main Wallet,card_main,Card,uber to go out with athletics team
+e63373433eb3,2026-05-16 13:08,expense,Flight ticket to hyd,4727.00,Home,cat_home,Main Wallet,card_main,Card,flight ticket to hyd
+e218006a7eda,2026-05-15 18:06,expense,Snacks,9.00,Food,cat_food,Main Wallet,card_main,Card,snacks
+79aeb5801807,2026-05-10 14:37,expense,Soap,65.00,Personal Care,cat_personal,Main Wallet,card_main,Card,soap
+10d4baaf9f4d,2026-05-05 14:20,expense,Snacks,9.00,Food,cat_food,Main Wallet,card_main,Card,snacks
+91331e4d9d02,2026-04-30 14:48,expense,Snacks,20.00,Food,cat_food,Main Wallet,card_main,Card,snacks
+55d651486a0c,2026-04-25 00:22,expense,Noodles with the boys,64.00,Food,cat_food,Main Wallet,card_main,Card,noodles with the boys
+2628f9686e52,2026-04-23 16:45,expense,Food,9.00,Food,cat_food,Main Wallet,card_main,Card,
+e54f7d72fe73,2026-04-22 20:29,expense,Snacks,15.00,Food,cat_food,Main Wallet,card_main,Card,snacks
+80585417d440,2026-04-20 16:09,expense,Food,10.00,Food,cat_food,Main Wallet,card_main,Card,
+54abf7674a82,2026-04-14 22:35,expense,Snacks,73.00,Food,cat_food,Main Wallet,card_main,Card,snacks
+1554a7854b15,2026-04-13 22:36,expense,Snacks,10.00,Food,cat_food,Main Wallet,card_main,Card,snacks
+03947e671f3e,2026-04-12 19:34,expense,Toastmasters event,557.00,Transportation,cat_transport,Main Wallet,card_main,Card,toastmasters event
+4a055ca96d4a,2026-04-12 16:00,expense,Burger at truffles,210.00,Food,cat_food,Main Wallet,card_main,Card,burger at truffles
+3a8ab0755323,2026-04-11 10:35,expense,Snacks,18.00,Food,cat_food,Main Wallet,card_main,Card,snacks
+5af9c4cfd871,2026-04-11 06:25,expense,Haircut,175.00,Personal Care,cat_personal,Main Wallet,card_main,Card,haircut
+0c0217df3790,2026-04-08 21:38,expense,Snacks,40.00,Food,cat_food,Main Wallet,card_main,Card,snacks
+d74e6e81575d,2026-04-08 15:49,expense,Soap,40.00,Bills,cat_bills,Main Wallet,card_main,Card,soap
+aeb8eca4ec7e,2026-04-02 11:17,expense,Snacks and soap bar,23.00,Shopping,cat_shopping,Main Wallet,card_main,Card,snacks and soap bar
+a977aab6f006,2026-03-26 20:54,expense,snacks,10.00,Food,cat_food,Main Wallet,card_main,Card,snacks
+c9990bdc1db3,2026-03-25 18:08,expense,Summer Internship,6100.00,Education,cat_education,Main Wallet,card_main,Card,summer certification program
+d3da553d2a24,2026-03-21 19:07,expense,Toastmasters Subscription,2311.00,Subscriptions,cat_subs,Main Wallet,card_main,Card,toastmasters subscription
+eff6de846725,2026-03-21 14:05,expense,snacks,10.00,Food,cat_food,Main Wallet,card_main,Card,snacks
+0086619ecb6b,2026-03-17 18:41,expense,printout,14.00,Education,cat_education,Main Wallet,card_main,Card,printouts
+5c4113a13f6d,2026-03-16 07:00,expense,hackathon registration,103.00,Social,cat_social,Main Wallet,card_main,Card,hackathon registration
+18a0f626c84a,2026-03-15 17:40,expense,coming back from Nick's house,120.00,Shopping,cat_shopping,Main Wallet,card_main,Card,metro and bus back
+d690472a31c1,2026-03-14 13:10,expense,Transportation (going to Nick's house),153.00,Transportation,cat_transport,Main Wallet,card_main,Card,going to Nick's house
+d329325041b2,2026-03-08 21:40,expense,Cake contribution for toastmasters,53.00,Food,cat_food,Main Wallet,card_main,Card,cake contribution for toastmasters
+cefc5fafac74,2026-03-05 21:50,expense,Snacks,44.00,Food,cat_food,Main Wallet,card_main,Card,snacks
+5e736b8eba64,2026-02-28 13:59,income,Revels reimbursement,2100.00,Salary,cat_salary,Main Wallet,card_main,Card,revels reimbursement
+f961891e6518,2026-02-27 20:12,expense,Auto to bus stand,70.00,Transportation,cat_transport,Main Wallet,card_main,Card,auto to bus stand
+acef41d5c070,2026-02-27 19:10,expense,Snacks,25.00,Food,cat_food,Main Wallet,card_main,Card,snacks
+8201533c7d51,2026-02-27 18:50,expense,Badam lassi,60.00,Food,cat_food,Main Wallet,card_main,Card,badam lassi
+8bebffbeaedf,2026-02-27 18:37,expense,Auto ride back from kayaking,144.00,Transportation,cat_transport,Main Wallet,card_main,Card,auto ride back from kayaking
+bbcc1e6e1627,2026-02-27 17:43,expense,Kayak ride,250.00,Entertainment,cat_ent,Main Wallet,card_main,Card,kayak ride
+41e35c95de3c,2026-02-27 17:40,expense,Bus fare,34.00,Transportation,cat_transport,Main Wallet,card_main,Card,bus fare
+fb352cd3d064,2026-02-27 14:49,expense,Lunch with the team at a fancy japanese restaurant. spring roll 179 fried rice 239 paneer manchurian 179 tax 43,640.00,Food,cat_food,Main Wallet,card_main,Card,lunch with the team at a fancy japanese restaurant. spring roll 179 fried rice 239 paneer manchurian 179 tax 43
+f0a82a59d939,2026-02-27 13:30,expense,Cold tablets,10.00,Personal Care,cat_personal,Main Wallet,card_main,Card,cold tablets
+0df4385ba50b,2026-02-27 12:30,expense,Buggy ride,30.00,Transportation,cat_transport,Main Wallet,card_main,Card,buggy ride
+445b878d28ae,2026-02-27 09:57,expense,Snacks - biscuits,40.00,Food,cat_food,Main Wallet,card_main,Card,snacks - biscuits
+30254ac3b094,2026-02-26 17:15,expense,"Good snacks - dahi puri 70, coffee milkshake with icecream 90",160.00,Food,cat_food,Main Wallet,card_main,Card,"good snacks - dahi puri 70, coffee milkshake with icecream 90"
+bf3da0615e1c,2026-02-26 14:20,expense,Biscuits,25.00,Food,cat_food,Main Wallet,card_main,Card,biscuits
+733bf4890115,2026-02-26 12:50,expense,Lemon juice,20.00,Food,cat_food,Main Wallet,card_main,Card,lemon juice
+f8d7d2fd5a30,2026-02-26 12:45,expense,Auto ride back to campus,135.00,Transportation,cat_transport,Main Wallet,card_main,Card,auto ride back to campus
+5fc2ec042fe6,2026-02-26 10:10,expense,Laddu prasad at krishna temple,50.00,Food,cat_food,Main Wallet,card_main,Card,laddu prasad at krishna temple
+2cdce9ebc2ee,2026-02-26 09:15,expense,Auto to krishna temple,130.00,Transportation,cat_transport,Main Wallet,card_main,Card,auto to krishna temple
+77d344a1b208,2026-02-25 20:45,expense,Snacks,35.00,Food,cat_food,Main Wallet,card_main,Card,snacks
+766fc1dfa65d,2026-02-25 16:07,expense,Biscuits,10.00,Food,cat_food,Main Wallet,card_main,Card,biscuits
+122de687a7c2,2026-02-25 15:40,expense,"Fruits, bananas",14.00,Food,cat_food,Main Wallet,card_main,Card,"fruits, bananas"
+f3fcc1fabee1,2026-02-25 09:26,expense,Breakfast,99.00,Food,cat_food,Main Wallet,card_main,Card,breakfast
+9d3c8a8cc253,2026-02-24 21:20,expense,Food,99.00,Food,cat_food,Main Wallet,card_main,Card,
+0a79433ad8dc,2026-02-24 16:55,expense,Auto to ground endpoint,80.00,Transportation,cat_transport,Main Wallet,card_main,Card,auto to ground endpoint
+8b79c320bea6,2026-02-24 16:15,expense,Fruits,17.00,Food,cat_food,Main Wallet,card_main,Card,fruits
+25d190990122,2026-02-24 13:18,expense,Lunch,99.00,Food,cat_food,Main Wallet,card_main,Card,lunch
+778378770b5a,2026-02-23 21:04,expense,Lemonade,20.00,Food,cat_food,Main Wallet,card_main,Card,lemonade
+16aa0e99042b,2026-02-23 21:00,expense,Dinner,240.00,Food,cat_food,Main Wallet,card_main,Card,dinner
+e8acf7c9a144,2026-02-23 16:45,expense,Biscuits,10.00,Food,cat_food,Main Wallet,card_main,Card,biscuits
+fba81519d2fe,2026-02-23 14:49,expense,Lassi,20.00,Food,cat_food,Main Wallet,card_main,Card,lassi
+2933e05bd313,2026-02-23 11:40,expense,Notebook for studying,25.00,Education,cat_education,Main Wallet,card_main,Card,notebook for studying
+e00e7b8e227c,2026-02-23 09:21,expense,Breakfast,80.00,Food,cat_food,Main Wallet,card_main,Card,breakfast
+9f547e9ba353,2026-02-22 21:10,expense,Energy drink and lemonade,45.00,Food,cat_food,Main Wallet,card_main,Card,energy drink and lemonade
+c1d635b2e208,2026-02-22 20:50,expense,Dinner,150.00,Food,cat_food,Main Wallet,card_main,Card,dinner
+fa6a41e9bd49,2026-02-22 18:10,expense,Lemon juice,20.00,Food,cat_food,Main Wallet,card_main,Card,lemon juice
+90d18c658198,2026-02-22 12:25,expense,Lunch,150.00,Food,cat_food,Main Wallet,card_main,Card,lunch
+5404c523cb0c,2026-02-22 10:00,expense,Room accommodation fees,300.00,Social,cat_social,Main Wallet,card_main,Card,room accommodation fees
+8cecd3c60d7d,2026-02-22 08:15,expense,Breakfast,80.00,Food,cat_food,Main Wallet,card_main,Card,breakfast
+0ef68088b9eb,2026-02-20 15:40,expense,Bodywash,99.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Campus Mart
+4751438ed584,2026-02-17 20:51,expense,Snacks,13.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+4059ad741b59,2026-02-13 19:50,expense,IQ Test,1640.00,Subscriptions,cat_subs,Main Wallet,card_main,Card,Merchant: Online IQ Test
+9ce9e2a1e815,2026-02-13 15:46,expense,Snacks,18.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+255cca524b70,2026-02-12 13:00,expense,Neomycin Cream,221.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Campus Medical Store
+e74906d23619,2026-02-07 06:20,expense,Travel to Toastmasters Meeting,476.00,Transportation,cat_transport,Main Wallet,card_main,Card,Merchant: Uber
+47f81625c676,2026-02-05 22:12,expense,Snacks,40.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: HB4 JustVend
+3e34b2da8419,2026-02-05 20:00,expense,Toastmasters Leadership Meet,199.00,Social,cat_social,Main Wallet,card_main,Card,Merchant: CoFee
+24e766e7f182,2026-02-04 16:51,expense,Travel to Toastmasters Meeting,130.00,Transportation,cat_transport,Main Wallet,card_main,Card,Merchant: Auto
+235bb700026b,2026-02-03 22:44,expense,Snacks,129.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: HB4 JustVend
+d03b2c7fd5f9,2026-01-31 16:38,expense,Haircut,175.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Campus Salon
+d30f25aba4d1,2026-01-30 19:21,expense,Battery Cells,72.00,Social,cat_social,Main Wallet,card_main,Card,Merchant: Campus Mart
+b96e046da9cc,2026-01-26 16:15,expense,Lab Record,75.00,Education,cat_education,Main Wallet,card_main,Card,Merchant: Campus Mart
+aadb4d47d329,2026-01-23 15:32,expense,Biscuits,40.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: AB4 Cafe
+dd7e5f5f2f3f,2026-01-21 13:13,expense,drawing Book + 2 pens,105.00,Education,cat_education,Main Wallet,card_main,Card,Merchant: Campus Mart
+53d7f8c1f8ad,2026-01-17 19:36,expense,Ladybug sticker,20.00,Shopping,cat_shopping,Main Wallet,card_main,Card,Merchant: SMI stall
+5b8ebe7ee83d,2026-01-15 00:25,expense,Toastmasters Subscription,9505.00,Subscriptions,cat_subs,Main Wallet,card_main,Card,Merchant: Malya Raja
+8573836981e9,2026-01-13 14:52,expense,Snack,30.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: AB4 Cafe
+c1b576e70ca1,2026-01-13 09:00,expense,Notebook,30.00,Education,cat_education,Main Wallet,card_main,Card,Merchant: Campus Mart
+e0468822b8a5,2026-01-11 11:47,expense,Linkedin Premium for 2 months,499.00,Subscriptions,cat_subs,Main Wallet,card_main,Card,Merchant: Linkedin
+01519378501d,2026-01-07 12:34,expense,Toothpaste,75.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Campus Mart
+bafa945f83d6,2026-01-05 16:25,expense,Chemistry lab manual,110.00,Education,cat_education,Main Wallet,card_main,Card,Merchant: Library
+9a89e383d3e1,2026-01-03 11:27,expense,Tide Soap,10.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Campus Mart
+c5ce57bf8a69,2026-01-01 10:47,expense,Uber from Airport,888.00,Transportation,cat_transport,Main Wallet,card_main,Card,Merchant: Uber
+34a8ad35af0f,2026-01-01 06:22,expense,Uber to Airport,691.00,Transportation,cat_transport,Main Wallet,card_main,Card,Merchant: Uber
+efe48e23c4af,2025-12-24 22:37,expense,Finlatics Course,2999.00,Subscriptions,cat_subs,Main Wallet,card_main,Card,Merchant: Finlatics
+10aad80de63f,2025-12-03 17:35,expense,Gym Membership,504.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Gym
+2f3ed73cd26a,2025-12-02 09:05,expense,Uber from Airport,768.00,Transportation,cat_transport,Main Wallet,card_main,Card,Merchant: Uber
+908ce1d5de47,2025-12-02 04:19,expense,Energy Drink at Airport,94.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Store
+014640ad320b,2025-12-01 21:56,expense,Uber to Airport,642.00,Transportation,cat_transport,Main Wallet,card_main,Card,Merchant: Uber
+294fbf3f2b02,2025-11-28 20:43,expense,Biscuits,10.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+fa48f0729cfc,2025-11-28 16:00,expense,Haircut,236.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Campus Salon
+a3bb9b1d35bc,2025-11-26 16:00,expense,Printouts,50.00,Education,cat_education,Main Wallet,card_main,Card,Merchant: Library | Had to get a lot of documents printed out for the hackathon cost reimbursment
+21990b5f49fc,2025-11-25 11:43,expense,Biscuits,20.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+8b08464b920a,2025-11-21 18:10,expense,Plane Ticket to HYD,3656.00,Social,cat_social,Main Wallet,card_main,Card,"Merchant: Indigo | WInter break, going back home"
+f585ac6f7393,2025-11-20 15:14,expense,Biscuits,9.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+fac0aecb5f10,2025-11-20 10:31,expense,Biscuits,20.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+5b0512c0d6a3,2025-11-16 15:50,expense,Uber to Campus,184.00,Transportation,cat_transport,Main Wallet,card_main,Card,"Merchant: Uber | 550 - 366 = 184; the ride was 550 , we split it three ways so I got 366 back from buddies"
+7b58bfe3dbe2,2025-11-16 08:50,expense,Uber to Bagamane Tech Park,208.00,Transportation,cat_transport,Main Wallet,card_main,Card,"Merchant: Uber | 622 - 414 = 208;the ride was 622, we split it three ways so I got 414 back from buddies"
+c0426458d1f2,2025-11-13 15:36,expense,Biscuits,10.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+63a97e405512,2025-11-11 15:31,expense,Biscuits,10.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+adacce54a5ec,2025-11-05 21:48,expense,Energy drink + Candy (70 + 40),110.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Justvend HB4
+bf49ab2006da,2025-11-05 20:48,expense,Cab from Hotel,143.00,Transportation,cat_transport,Main Wallet,card_main,Card,Merchant: Uber | Came back to campus
+9a85f273bc97,2025-11-05 18:00,expense,Cab to Hotel,272.00,Transportation,cat_transport,Main Wallet,card_main,Card,Merchant: Uber | Went to meet my Dad at Leela Bharathiya City
+6f76c58dc295,2025-11-05 11:40,expense,Biscuits,19.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+148110059301,2025-11-03 20:24,expense,ToothBrush + RIn Soap,60.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Campus Mart
+02bd60ed0f65,2025-11-01 02:19,expense,California Habanero Burrito,169.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Vedanth | We ordered food
+9fc7e9b78ead,2025-11-01 01:51,expense,Uber Ride to NewTown,145.00,Transportation,cat_transport,Main Wallet,card_main,Card,Merchant: Uber | We were stuck at the party house and needed to get somewhere
+e27d7cd5a22c,2025-10-31 19:40,expense,Auto Ride to party,100.00,Transportation,cat_transport,Main Wallet,card_main,Card,Merchant: Nikhel
+8f8688c8c31b,2025-10-31 18:51,expense,Biscuits,20.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+64793834defc,2025-10-30 12:03,expense,Printout,12.00,Education,cat_education,Main Wallet,card_main,Card,Merchant: Library
+62e836669b7a,2025-10-28 17:02,expense,Biscuits,40.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+aa9159f933d9,2025-10-25 17:05,expense,Biscuits,20.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+53bee9d26b2f,2025-10-21 11:39,expense,Printout,8.00,Education,cat_education,Main Wallet,card_main,Card,Merchant: Library
+6b97fe4dd3a5,2025-10-20 20:53,expense,Biscuits,30.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+94d1ea54501a,2025-10-19 11:20,expense,Chegg Subscription,549.00,Subscriptions,cat_subs,Main Wallet,card_main,Card,Merchant: Google play | Homework answering app
+6c7258e62158,2025-10-18 09:37,expense,Soap,36.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Campus Mart
+b24758af9ea3,2025-10-18 09:37,expense,Lassi,20.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+52f336f321a4,2025-10-17 10:36,expense,Unibic Cookies,30.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: AB4 Cafe
+37b9d60fe775,2025-10-15 15:45,expense,Pen + papers ( 10 + 30 ),40.00,Education,cat_education,Main Wallet,card_main,Card,Merchant: Library
+7bcc08c5861b,2025-10-14 20:31,expense,Energy Drink,70.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+50d9a853dd0c,2025-10-14 12:01,expense,printout,2.00,Education,cat_education,Main Wallet,card_main,Card,Merchant: Library
+f50d088f40c9,2025-10-11 16:52,expense,2 x Biscuits,40.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+7db23c790604,2025-10-10 19:52,expense,Subway + Cookie ( 179 + 45 ),224.00,Food,cat_food,Main Wallet,card_main,Card,"Merchant: Subway | Dinner at Subway while coming back, I paid 179 for advik’s subway but he paid back later."
+ca1421d4728c,2025-10-10 01:57,expense,Hackathon Bus Tickets,1558.00,Transportation,cat_transport,Main Wallet,card_main,Card,Merchant: Shaurya Booked the tickets | We cancelled previous bus tickets and booked new for same price. 1175 refunded from the previous bus and the cancellation fees was 400.
+fa845be60153,2025-10-08 08:16,expense,Hackathon registration,350.00,Social,cat_social,Main Wallet,card_main,Card,Merchant: Manipal
+ef20077637ac,2025-10-07 12:07,expense,2 x Water bottle,40.00,Shopping,cat_shopping,Main Wallet,card_main,Card,Merchant: Cafe | Date inferred: 2025-10-07 (undated source row)
+696fc7ea8785,2025-10-07 12:06,expense,Breakfast (Idli) + Metro ticket (26 + 40),66.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Advik | Date inferred: 2025-10-07 (undated source row)
+82062a5db6e7,2025-10-07 12:05,expense,Burger King Dinner,273.00,Food,cat_food,Main Wallet,card_main,Card,"Merchant: Burger King | 79 + 89 + 105 = 273; Yashu got a 79 burger, I got an 89 burger and Advik got a 105 burger. Yashu and Advik paid back their amount. | Date inferred: 2025-10-07 (undated source row)"
+eb7019aa941c,2025-10-07 12:04,expense,Room for 1 night,321.00,Social,cat_social,Main Wallet,card_main,Card,Merchant: Yashu | 400 - 79 = 321; I had to pay Yashu 400 for the hostel room we took and then he paid me back 79 for the burger king | Date inferred: 2025-10-07 (undated source row)
+8aab322a7218,2025-10-07 12:03,expense,Body Wash,250.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Store | Date inferred: 2025-10-07 (undated source row)
+f0d6df576705,2025-10-07 12:02,expense,Dinner(Masala Dosa + Lassi) : (130 + 100) =,230.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Adarsh | Date inferred: 2025-10-07 (undated source row)
+7c01073b03fb,2025-10-07 12:01,expense,Ice cream,32.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Shaurya | Date inferred: 2025-10-07 (undated source row)
+d4315efc1c0e,2025-10-07 12:00,expense,Bus ride,92.00,Transportation,cat_transport,Main Wallet,card_main,Card,Merchant: Adarsh | Date inferred: 2025-10-07 (undated source row)
+d9b40f18e571,2025-10-06 09:00,expense,Printout,4.00,Education,cat_education,Main Wallet,card_main,Card,Merchant: Library
+5eab288145c7,2025-10-05 15:15,expense,Biscuits + Dorito,30.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+ea9e52ccec54,2025-10-05 14:40,expense,Biscuits,20.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart
+d7d8ccf111d7,2025-10-02 15:14,expense,Energy Drink,50.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Shaurya ordered from Blinkit
+7c99a9968cda,2025-09-30 11:05,expense,Photo Copy,2.00,Education,cat_education,Main Wallet,card_main,Card,Merchant: Library | Had to get printout for engineering lab
+1bcbf16ea826,2025-09-29 19:00,expense,Energy Drink + Electrolytes ( 70 + 40 ),110.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart | had a crazy sprinting workout
+1c17a1705f36,2025-09-29 10:50,expense,Hackathon Bus Tickets,1941.00,Transportation,cat_transport,Main Wallet,card_main,Card,Merchant: Adarsh | Tickets for bus ride to and from Manipal - Bangalore
+da47585904ac,2025-09-28 13:00,expense,Biscuits,25.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart | Hungry
+c94b951e9b77,2025-09-26 13:00,expense,Unibic cookies,20.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: AB4 Cafe | Hungry
+74e34e2d7c2c,2025-09-25 14:22,expense,Unibic cookies,20.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: AB4 Cafe | Hungry
+f5214dba0671,2025-09-22 18:00,expense,Digestives + Energy Drink,80.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart | Hungry
+427a51dd09e2,2025-09-21 10:05,expense,Biscuits,25.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart | Hungry
+44dad4742227,2025-09-17 17:10,expense,Biscuits,45.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart | Just chillin
+f624f9062913,2025-09-13 19:20,expense,Auto ride back,250.00,Transportation,cat_transport,Main Wallet,card_main,Card,Merchant: Muddenahalli | had to get back to campus
+e87e3ccbfcf6,2025-09-13 18:00,expense,Lenskart Glasses,6448.00,Shopping,cat_shopping,Main Wallet,card_main,Card,"Merchant: Lenskart, Rajanukunte, Muddanahalli | My old glasses were very loose and started to wear down. So I just bought two glasses on a buy one get one free deal. [frame : 5000, lens : 1200, fitting_charges : 199, cupon : 49]"
+f4c418955413,2025-09-13 17:30,expense,Dentist Checkup,400.00,Personal Care,cat_personal,Main Wallet,card_main,Card,"Merchant: Sampoorna Advance Dental Center, Avalahalli, Yelahanka | My bottom left tooth was feeling sensitive whenever I chewed on some food. They took an XRay of the bottom left side, which cost Rs. 400. Turns out that mewing had caused bone loss in my bottom teeth gums and that was causing sensitivity as I chewed. It has no cure but I’ll have to stay cautious as I eat from the next time - cause it feels very terrifying to have bone loss in your gums."
+63d63dce5e05,2025-09-13 17:00,expense,Auto ride Dentist,220.00,Transportation,cat_transport,Main Wallet,card_main,Card,Merchant: on road | had to go to a dentist appointment for check up
+279543b5b242,2025-09-13 13:00,expense,Mouthwash,230.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Campus Mart | Wanted mouthwash
+cc7e3dece5ae,2025-09-13 13:00,expense,Energy Bar,50.00,Food,cat_food,Main Wallet,card_main,Card,"Merchant: Campus Mart | no reason, just trying out"
+535a02163fe7,2025-09-10 10:00,expense,Energy Drink,70.00,Food,cat_food,Main Wallet,card_main,Card,"Merchant: AB5 JustVend | no reason, just like that, but I’m never going to use shitty justvent app again. ever!"
+c2f5d243052c,2025-09-10 09:50,expense,Unibic Cookies,20.00,Food,cat_food,Main Wallet,card_main,Card,"Merchant: AB4 Cafe | no reason, just like that"
+d9b8afb80c7a,2025-09-09 13:00,expense,3 x Digestive cookies,30.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart | Lunch wasn’t good so I just got digestive cookies
+1c9896677c01,2025-09-04 18:00,expense,2 Soaps ( 90 + 45),135.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Campus Mart | Soap got over
+6a35c356781c,2025-09-04 18:00,expense,Fruit Drink,40.00,Food,cat_food,Main Wallet,card_main,Card,"Merchant: Campus Mart | Sunlight that evening was amazing, just wanted to be present in the moment and contemplate upon my future self. fruit drink gave me a calm sense of mind."
+9317f963f648,2025-08-31 16:40,expense,Haircut,236.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Campus Salon | Hair were an untidy mess
+e088387c93b9,2025-08-31 13:00,expense,Digestive cookies,20.00,Food,cat_food,Main Wallet,card_main,Card,"Merchant: Campus Mart | Lunch on sunday sucks, I didn’t eat it so just bought digestive. Never eat lunch on sunday."
+950090a2870c,2025-08-28 12:30,expense,2 x Unibic cookies,40.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: AB4 | Just wanted to eat unibic cookies
+3afa1b56efce,2025-08-21 17:30,expense,geometry box,100.00,Education,cat_education,Main Wallet,card_main,Card,Merchant: Campus Mart | Drawing class needed geometry box
+6c5af5cdc95e,2025-08-21 13:00,expense,2 x (protein bar + snickers + grape juice) = 2 x (80 + 80 + 70),460.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: AB4 JustVend | I placed the order once but it failed it and made me pay twice. 230 → 460
+c943d5f13cfe,2025-08-21 12:40,expense,Biscuits + milkshake,90.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: AB4 cafe | Just Let Go…..
+a1b6942a7575,2025-08-20 15:30,expense,1 x toothbrush,20.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Campus Mart | Needed toothbrush
+da96f09da523,2025-08-17 13:10,expense,2 x digestives,20.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart | Lunch on sundays is just trash fried rice and manchurian. I need to get my digestives!
+5bee05280d99,2025-08-15 17:27,expense,4 x ball pens,40.00,Education,cat_education,Main Wallet,card_main,Card,Merchant: Campus Mart | Needed new ball pens (hauser) to write with
+fcc56f12d4a7,2025-08-13 20:12,expense,Electrolyte energy drink,60.00,Food,cat_food,Main Wallet,card_main,Card,"Merchant: Campus Mart | I thought - every programmer in the valley pounds Monster, so why am I being so clean all the time, I should give energy drinks a shot just like I pounded Sting a couple of months back"
+0b291e868e3c,2025-08-13 20:12,expense,Greek Yogurt,40.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart | Greek yogurt after dinner tasted good that day
+5944701f00fb,2025-08-13 13:33,expense,2 x Surf excel soap bar,20.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Campus Mart | Needed this to wash underwear and socks
+fa7ad3dbf282,2025-08-13 13:33,expense,2 x desert mint,20.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart | Just wanted to try how it tasted
+ce98de5c23e8,2025-08-10 12:44,expense,2 x Digestive cookies,20.00,Food,cat_food,Main Wallet,card_main,Card,"Merchant: Campus Mart | Was headed to the library after lunch to study, but I was still a bit hungry cause the lunch wasn’t good, so I just crunched some digestive cookies"
+e72b426e6994,2025-08-06 18:00,expense,Calculator App,95.00,Education,cat_education,Main Wallet,card_main,Card,Merchant: Google Play | This calculator app is probably the best calculator app I’ve ever seen. It’s free to use but I felt that I should help the developers out by getting the lifetime access to all their features. I can’t believe it’s only 95!
+4c5cffeedd1b,2025-08-06 16:06,expense,2 x Body Soap,209.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Campus Mart | My old soap got over so I had to get new soaps
+9df2238f1ad2,2025-08-02 13:32,expense,2 x Ice Cream (Mint + choco chip),117.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Ice cream shop | I just discussed Stago with my hackathon buddies and we went to eat ice cream to mark the beginning of our first project together
+ca470ea152ab,2025-07-30 16:45,expense,Cold Drink,70.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart | wanted give it a shot - it’s just flavored color water
+629d9016ce55,2025-07-30 16:25,expense,2 x Digestive cookies,20.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Campus Mart | I was super hungry in the evening and wanted to munch on digestive cookies
+a84b9f1c5d49,2025-07-30 16:10,expense,Mirror Wiper,149.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Amazon | Needed a wiper for foggy mirror and wet sink
+898569e7ff3f,2025-07-30 13:10,expense,2 x ball pens,20.00,Education,cat_education,Main Wallet,card_main,Card,"Merchant: Campus Mart | Needed new pens to write with - (octane pens turned out to be very bad, always buy hauser)"
+148909bceee2,2025-07-29 11:00,expense,Experiment Book,100.00,Education,cat_education,Main Wallet,card_main,Card,Merchant: Library | Required to buy workshop experiment book
+c6d546039667,2025-07-26 10:36,expense,Drawing Book + Record Book,195.00,Education,cat_education,Main Wallet,card_main,Card,Merchant: Campus Mart | Engineering graphics class needed drawing book and physics lab needed record book
+e0b2b5350ad5,2025-07-25 15:02,expense,Physics lab manual,90.00,Education,cat_education,Main Wallet,card_main,Card,Merchant: Library | Required to buy physics lab manual
+47e7709bfaae,2025-07-23 19:35,expense,Dinner at BD mess,110.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Blue Dove | Wanted to try out blue dove dinner with some friends
+1b157ebe4ec1,2025-07-20 15:21,expense,2 x Fruit Juice (Watermelon and Mixed fruit juice),118.00,Food,cat_food,Main Wallet,card_main,Card,Merchant: Fresh Fuel | Was very pissed that I was hungry and didn’t have energy to think clearly
+080b51dfeedb,2025-07-17 20:14,expense,Bathroom Wiper,259.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Campus Mart | Needed a wiper for wet floor
+79bafbf9730b,2025-07-17 20:14,expense,Toothbrush Holder,65.00,Personal Care,cat_personal,Main Wallet,card_main,Card,Merchant: Campus Mart | Didn’t have a toothbrush holder

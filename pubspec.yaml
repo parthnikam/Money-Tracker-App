@@ -1,0 +1,78 @@
+name: app_v0
+description: "A clean, private personal finance tracker."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  flutter_riverpod: ^2.6.1
+  hooks_riverpod: ^2.6.1
+  flutter_hooks: ^0.21.2
+  go_router: ^15.1.2
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  intl: ^0.20.2
+  fl_chart: ^0.71.0
+  uuid: ^4.5.1
+  path_provider: ^2.1.5
+  google_fonts: ^6.2.1
+  # 13.2+ supports Flutter built-in Kotlin (avoids KGP plugin warning on AGP 9).
+  share_plus: ^13.2.1
+  path: ^1.9.1
+  # Needed at runtime for FlutterNativeSplash.preserve / .remove
+  flutter_native_splash: ^2.4.8
+  file_selector: ^1.1.0
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  hive_generator: ^2.0.1
+  build_runner: 2.4.13
+  flutter_launcher_icons: ^0.14.4
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/logo.png
+    - assets/logo.ico
+
+# App launcher icons from assets/logo.ico (via assets/app_icon.png export).
+# Regenerate with: dart run flutter_launcher_icons
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: assets/app_icon.png
+  adaptive_icon_background: "#F7F7FF"
+  adaptive_icon_foreground: assets/app_icon.png
+  remove_alpha_ios: true
+  web:
+    generate: true
+    image_path: assets/app_icon.png
+    background_color: "#F7F7FF"
+    theme_color: "#ea526f"
+  windows:
+    generate: true
+    image_path: assets/logo.ico
+    icon_size: 256
+  macos:
+    generate: true
+    image_path: assets/app_icon.png
+
+# Native launch splash (brand white #F7F7FF + logo only).
+# Regenerate with: dart run flutter_native_splash:create
+flutter_native_splash:
+  color: "#F7F7FF"
+  image: assets/logo.png
+  android_12:
+    image: assets/logo.png
+    color: "#F7F7FF"
+    icon_background_color: "#F7F7FF"
+  ios: true
+  web: true
+  android: true
