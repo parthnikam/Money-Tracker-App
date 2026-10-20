@@ -42,7 +42,17 @@ class HiveCardRepository implements CardRepository {
 
   @override
   Future<void> delete(String id) async {
+    final existing = _readAll();
+    final target = existing.where((c) => c.id == id).firstOrNull;
     await _box.delete(id);
+    // Keep a primary spend account when the deleted card was the primary one.
+    if (target != null && target.isPrimary) {
+      final rest = _readAll();
+      if (rest.isNotEmpty && !rest.any((c) => c.isPrimary)) {
+        final next = rest.first;
+        await _box.put(next.id, next.copyWith(isPrimary: true).toMap());
+      }
+    }
     _notify();
   }
 }

@@ -7,7 +7,7 @@ import '../../../core/di/providers.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/currency_formatter.dart';
 import '../../../shared/widgets/glass_button.dart';
-import '../../../shared/widgets/glass_card.dart';
+import '../../../shared/widgets/surface_card.dart';
 import '../domain/budget.dart';
 
 class BudgetsScreen extends ConsumerWidget {
@@ -70,7 +70,7 @@ class BudgetsScreen extends ConsumerWidget {
               final progress = b.limit <= 0 ? 0.0 : (spent / b.limit).clamp(0.0, 1.5);
               final over = spent > b.limit;
 
-              return GlassCard(
+              return SurfaceCard(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

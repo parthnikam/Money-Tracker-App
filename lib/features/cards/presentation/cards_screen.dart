@@ -10,6 +10,7 @@ import '../../../core/utils/currency_formatter.dart';
 import '../../../shared/widgets/glass_button.dart';
 import '../../../shared/widgets/wallet_card_widget.dart';
 import '../../cards/domain/wallet_card.dart';
+import 'delete_card.dart';
 import '../../transactions/domain/category.dart';
 import '../../transactions/domain/transaction.dart';
 
@@ -78,40 +79,61 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(
                       AppConstants.pagePadding,
-                      12,
+                      16,
                       AppConstants.pagePadding,
                       0,
                     ),
                     child: Column(
                       children: [
-                        // Centered title + add
-                        SizedBox(
-                          height: 44,
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Text(
+                        // Title + edit / remove / add. Left-aligned so the
+                        // actions stay tappable on a narrow phone.
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
                                 'Wallet Details',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .titleMedium
+                                    .headlineSmall
                                     ?.copyWith(fontWeight: FontWeight.w700),
                               ),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: IconButton(
-                                  onPressed: () => context.push('/cards/add'),
-                                  icon: const Icon(Icons.add_circle_outline),
-                                  color: AppColors.primary,
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                            IconButton(
+                              tooltip: 'Edit card',
+                              visualDensity: VisualDensity.compact,
+                              onPressed: () =>
+                                  context.push('/cards/edit/${selected.id}'),
+                              icon: const Icon(Icons.edit_outlined),
+                              color: palette.textSecondary,
+                            ),
+                            IconButton(
+                              tooltip: 'Remove card',
+                              visualDensity: VisualDensity.compact,
+                              onPressed: () async {
+                                await confirmDeleteCard(context, ref, selected);
+                              },
+                              icon: const Icon(Icons.delete_outline),
+                              color: AppColors.expenseOf(context),
+                            ),
+                            IconButton(
+                              tooltip: 'Add card',
+                              visualDensity: VisualDensity.compact,
+                              onPressed: () => context.push('/cards/add'),
+                              icon: const Icon(Icons.add_circle_outline),
+                              color: AppColors.primary,
+                            ),
+                          ],
                         ),
                         const SizedBox(height: 8),
 
-                        // Large card
-                        WalletCardWidget(card: selected),
+                        // Large card — tap to edit
+                        WalletCardWidget(
+                          card: selected,
+                          onTap: () =>
+                              context.push('/cards/edit/${selected.id}'),
+                        ),
                         const SizedBox(height: 18),
 
                         // Wallet dropdown (centered pill) — like design
@@ -143,8 +165,7 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
                               const SizedBox(width: 10),
                               Expanded(
                                 child: TextField(
-                                  onChanged: (v) =>
-                                      setState(() => _query = v),
+                                  onChanged: (v) => setState(() => _query = v),
                                   decoration: InputDecoration(
                                     hintText: 'Search for any transaction',
                                     hintStyle: TextStyle(
@@ -156,8 +177,9 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
                                     focusedBorder: InputBorder.none,
                                     filled: false,
                                     isDense: true,
-                                    contentPadding:
-                                        const EdgeInsets.symmetric(vertical: 12),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                      vertical: 12,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -196,13 +218,13 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
                       separatorBuilder: (_, _) => const SizedBox(height: 2),
                       itemBuilder: (context, i) {
                         final tx = cardTx[i];
-                        final cat =
-                            cats.where((c) => c.id == tx.categoryId).firstOrNull;
+                        final cat = cats
+                            .where((c) => c.id == tx.categoryId)
+                            .firstOrNull;
                         return _WalletTxRow(
                           transaction: tx,
                           category: cat,
-                          onTap: () =>
-                              context.push('/transactions/${tx.id}'),
+                          onTap: () => context.push('/transactions/${tx.id}'),
                         );
                       },
                     ),
@@ -254,7 +276,23 @@ class _WalletDropdown extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  Expanded(child: Text(c.name)),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(c.name),
+                        if (c.issuerLabel.isNotEmpty)
+                          Text(
+                            c.issuerLabel,
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: palette.textTertiary,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
                   if (c.id == selected.id)
                     const Icon(Icons.check, size: 18, color: AppColors.primary),
                 ],
@@ -280,11 +318,7 @@ class _WalletDropdown extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 6),
-            Icon(
-              Icons.expand_more,
-              size: 18,
-              color: palette.textSecondary,
-            ),
+            Icon(Icons.expand_more, size: 18, color: palette.textSecondary),
           ],
         ),
       ),
@@ -294,11 +328,7 @@ class _WalletDropdown extends StatelessWidget {
 
 /// Transaction row matching wallet design: icon · title/date · amount/method.
 class _WalletTxRow extends StatelessWidget {
-  const _WalletTxRow({
-    required this.transaction,
-    this.category,
-    this.onTap,
-  });
+  const _WalletTxRow({required this.transaction, this.category, this.onTap});
 
   final Transaction transaction;
   final Category? category;
@@ -308,8 +338,9 @@ class _WalletTxRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final palette = AppThemeColors.of(context);
     final isExpense = transaction.isExpense;
-    final amountColor =
-        isExpense ? AppColors.expenseOf(context) : AppColors.incomeOf(context);
+    final amountColor = isExpense
+        ? AppColors.expenseOf(context)
+        : AppColors.incomeOf(context);
     final dateStr = DateFormat('MMMM d, y').format(transaction.date);
     final method = transaction.paymentMethod;
 
@@ -349,10 +380,7 @@ class _WalletTxRow extends StatelessWidget {
                   const SizedBox(height: 2),
                   Text(
                     dateStr,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: palette.textTertiary,
-                    ),
+                    style: TextStyle(fontSize: 12, color: palette.textTertiary),
                   ),
                 ],
               ),
@@ -375,10 +403,7 @@ class _WalletTxRow extends StatelessWidget {
                   const SizedBox(height: 2),
                   Text(
                     method.startsWith('Paid') ? method : 'Paid with $method',
-                    style: TextStyle(
-                      fontSize: 11,
-                      color: palette.textTertiary,
-                    ),
+                    style: TextStyle(fontSize: 11, color: palette.textTertiary),
                   ),
                 ],
               ],

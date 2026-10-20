@@ -8,6 +8,7 @@ import 'package:uuid/uuid.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/di/providers.dart';
 import '../../../features/cards/domain/wallet_card.dart';
+import '../../cards/presentation/card_picker_sheet.dart';
 import '../domain/category.dart';
 import '../domain/transaction.dart';
 import 'category_picker_sheet.dart';
@@ -23,7 +24,6 @@ class AddTransactionScreen extends ConsumerStatefulWidget {
 
 class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
   TransactionType _type = TransactionType.expense;
-  bool _isTransfer = false;
 
   Category? _category;
   WalletCard? _account;
@@ -172,58 +172,10 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
       );
       return;
     }
-    final palette = AppThemeColors.of(context);
-    final picked = await showModalBottomSheet<WalletCard>(
-      context: context,
-      backgroundColor: palette.surfaceElevated,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(22)),
-      ),
-      builder: (ctx) {
-        return SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(height: 12),
-              Text(
-                'Select account',
-                style: Theme.of(ctx).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.primary,
-                    ),
-              ),
-              const SizedBox(height: 8),
-              ...(() {
-                final ordered = List<WalletCard>.from(cards)
-                  ..sort((a, b) {
-                    if (a.isPrimary == b.isPrimary) return 0;
-                    return a.isPrimary ? -1 : 1;
-                  });
-                return ordered;
-              })().map(
-                (c) => ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: c.startColor.withValues(alpha: 0.25),
-                    child: Icon(Icons.account_balance_wallet,
-                        color: c.startColor),
-                  ),
-                  title: Text(c.name),
-                  subtitle: Text(
-                    c.isPrimary
-                        ? '•••• ${c.lastFour} · Primary'
-                        : '•••• ${c.lastFour}',
-                  ),
-                  trailing: _account?.id == c.id
-                      ? const Icon(Icons.check_circle, color: AppColors.primary)
-                      : null,
-                  onTap: () => Navigator.pop(ctx, c),
-                ),
-              ),
-              const SizedBox(height: 12),
-            ],
-          ),
-        );
-      },
+    final picked = await showCardPickerSheet(
+      context,
+      cards: cards,
+      selectedId: _account?.id,
     );
     if (picked != null) setState(() => _account = picked);
   }
@@ -269,7 +221,7 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
       );
       return;
     }
-    if (!_isTransfer && category == null) {
+    if (category == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Pick a category')),
       );
@@ -290,29 +242,25 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
     final note = _noteCtrl.text.trim();
     final title = titleText.isNotEmpty
         ? titleText
-        : (_isTransfer
-            ? 'Transfer'
-            : (_type == TransactionType.income ? 'Income' : 'Expense'));
+        : (_type == TransactionType.income ? 'Income' : 'Expense');
 
     final tx = Transaction(
       id: const Uuid().v4(),
       title: title,
       amount: amount,
-      type: _isTransfer ? TransactionType.expense : _type,
-      categoryId: category?.id ?? categories.first.id,
+      type: _type,
+      categoryId: category.id,
       cardId: account.id,
       date: when,
       note: note.isEmpty ? null : note,
-      paymentMethod: _isTransfer ? 'Transfer' : 'Card',
+      paymentMethod: 'Card',
     );
 
     final repo = ref.read(transactionRepositoryProvider);
     final cardRepo = ref.read(cardRepositoryProvider);
     await repo.add(tx);
 
-    final delta = (_type == TransactionType.income && !_isTransfer)
-        ? amount
-        : -amount;
+    final delta = _type == TransactionType.income ? amount : -amount;
     await cardRepo.update(account.copyWith(balance: account.balance + delta));
 
     if (mounted) context.pop();
@@ -378,34 +326,34 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
             // ── Type tabs ───────────────────────────────────
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _TypeTab(
-                    label: 'INCOME',
-                    selected: !_isTransfer && _type == TransactionType.income,
-                    onTap: () => setState(() {
-                      _isTransfer = false;
-                      _type = TransactionType.income;
-                    }),
-                  ),
-                  _DividerDot(color: palette.textTertiary),
-                  _TypeTab(
-                    label: 'EXPENSE',
-                    selected: !_isTransfer && _type == TransactionType.expense,
-                    showCheck: !_isTransfer && _type == TransactionType.expense,
-                    onTap: () => setState(() {
-                      _isTransfer = false;
-                      _type = TransactionType.expense;
-                    }),
-                  ),
-                  _DividerDot(color: palette.textTertiary),
-                  _TypeTab(
-                    label: 'TRANSFER',
-                    selected: _isTransfer,
-                    onTap: () => setState(() => _isTransfer = true),
-                  ),
-                ],
+              child: Container(
+                height: 44,
+                padding: const EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                  color: palette.surface,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _TypeTab(
+                        label: 'INCOME',
+                        selected: _type == TransactionType.income,
+                        selectedColor: AppColors.incomeOf(context),
+                        onTap: () =>
+                            setState(() => _type = TransactionType.income),
+                      ),
+                    ),
+                    Expanded(
+                      child: _TypeTab(
+                        label: 'EXPENSE',
+                        selected: _type == TransactionType.expense,
+                        onTap: () =>
+                            setState(() => _type = TransactionType.expense),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 18),
@@ -450,14 +398,10 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
                         const SizedBox(height: 8),
                         _PickerField(
                           icon: Icons.sell_outlined,
-                          label: _isTransfer
-                              ? '—'
-                              : (_category?.name ?? 'Category'),
-                          leadingColor: _category != null
-                              ? AppColors.primary
-                              : null,
-                          onTap: _isTransfer ? null : _pickCategory,
-                          enabled: !_isTransfer,
+                          label: _category?.name ?? 'Category',
+                          leadingColor:
+                              _category != null ? AppColors.primary : null,
+                          onTap: _pickCategory,
                         ),
                       ],
                     ),
@@ -640,52 +584,45 @@ class _TypeTab extends StatelessWidget {
     required this.label,
     required this.selected,
     required this.onTap,
-    this.showCheck = false,
+    this.selectedColor = AppColors.primary,
   });
 
   final String label;
   final bool selected;
   final VoidCallback onTap;
-  final bool showCheck;
+
+  /// Fill used while this side is selected. Expense keeps the accent.
+  final Color selectedColor;
 
   @override
   Widget build(BuildContext context) {
     final palette = AppThemeColors.of(context);
+    final onFill = ThemeData.estimateBrightnessForColor(selectedColor) ==
+            Brightness.dark
+        ? AppColors.onPrimary
+        : AppColors.black;
     return GestureDetector(
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (showCheck && selected) ...[
-              const Icon(Icons.check_circle, size: 16, color: AppColors.primary),
-              const SizedBox(width: 4),
-            ],
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 0.6,
-                color: selected ? AppColors.primary : palette.textTertiary,
-              ),
-            ),
-          ],
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        curve: Curves.easeOutCubic,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: selected ? selectedColor : Colors.transparent,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0.6,
+            color: selected ? onFill : palette.textSecondary,
+          ),
         ),
       ),
     );
-  }
-}
-
-class _DividerDot extends StatelessWidget {
-  const _DividerDot({required this.color});
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text('|', style: TextStyle(color: color.withValues(alpha: 0.5)));
   }
 }
 
@@ -695,19 +632,17 @@ class _PickerField extends StatelessWidget {
     required this.label,
     required this.onTap,
     this.leadingColor,
-    this.enabled = true,
   });
 
   final IconData icon;
   final String label;
   final VoidCallback? onTap;
   final Color? leadingColor;
-  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
     final palette = AppThemeColors.of(context);
-    final color = enabled ? palette.textPrimary : palette.textTertiary;
+    final color = palette.textPrimary;
 
     return Material(
       color: Colors.transparent,

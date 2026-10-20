@@ -96,7 +96,7 @@ SavingsPlan (standalone goals)
 - Adding a transaction should adjust the linked card’s balance (current behavior in add flow)
 
 ## UI composition patterns
-- Shared glass primitives in `shared/widgets`
+- Shared surface cards and nav in `shared/widgets`
 - Screens are mostly `ConsumerWidget` / `ConsumerStatefulWidget`
 - Period filtering centralized in providers, not copied per screen
 

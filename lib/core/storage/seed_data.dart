@@ -63,26 +63,26 @@ Future<void> migrateCategoryColorsToAccent() async {
 /// Circle colors use the accent scale (no purple / rainbow).
 List<Category> defaultCategories() {
   const items = <(String id, String name, IconData icon)>[
+    ('cat_food', 'Food', Icons.restaurant),
+    ('cat_transport', 'Transportation', Icons.directions_bus),
+    ('cat_personal', 'Personal Care', Icons.account_balance_wallet),
+    ('cat_education', 'Education', Icons.school),
+    ('cat_health', 'Health', Icons.favorite),
     ('cat_baby', 'Baby', Icons.child_care),
     ('cat_beauty', 'Beauty', Icons.spa),
     ('cat_bills', 'Bills', Icons.receipt_long),
     ('cat_car', 'Car', Icons.directions_car),
     ('cat_clothing', 'Clothing', Icons.checkroom),
-    ('cat_education', 'Education', Icons.school),
     ('cat_electronics', 'Electronics', Icons.devices),
     ('cat_ent', 'Entertainment', Icons.movie),
-    ('cat_food', 'Food', Icons.restaurant),
-    ('cat_health', 'Health', Icons.favorite),
     ('cat_home', 'Home', Icons.home),
     ('cat_insurance', 'Insurance', Icons.verified_user),
-    ('cat_personal', 'Personal Care', Icons.account_balance_wallet),
     ('cat_shopping', 'Shopping', Icons.shopping_cart),
     ('cat_social', 'Social', Icons.groups),
     ('cat_sport', 'Sport', Icons.sports_tennis),
     ('cat_subs', 'Subscriptions', Icons.autorenew),
     ('cat_tax', 'Tax', Icons.request_quote),
     ('cat_phone', 'Telephone', Icons.phone_iphone),
-    ('cat_transport', 'Transportation', Icons.directions_bus),
     ('cat_salary', 'Salary', Icons.payments),
   ];
 

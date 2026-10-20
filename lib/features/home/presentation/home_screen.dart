@@ -10,7 +10,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/currency_formatter.dart';
 import '../../../features/transactions/domain/category.dart';
 import '../../../features/transactions/domain/transaction.dart';
-import '../../../shared/widgets/glass_card.dart';
+import '../../../shared/widgets/surface_card.dart';
 import '../../../shared/widgets/period_dropdown.dart';
 import '../../../shared/widgets/transaction_tile.dart';
 
@@ -46,10 +46,8 @@ class HomeScreen extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _Header(),
-                    const SizedBox(height: 20),
-                    GlassCard(
-                      depth: GlassDepth.outset,
+                    SurfaceCard(
+                      depth: SurfaceDepth.outset,
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,17 +80,14 @@ class HomeScreen extends ConsumerWidget {
                             ),
                             error: (e, _) => Text('$e'),
                           ),
-                          const SizedBox(height: 16),
-                          SizedBox(
-                            height: 100,
-                            child: filtered.when(
-                              data: (list) => _SpendingSparkline(
-                                transactions: list,
-                                period: period,
-                              ),
-                              loading: () => const SizedBox.shrink(),
-                              error: (_, _) => const SizedBox.shrink(),
+                          const SizedBox(height: 12),
+                          filtered.when(
+                            data: (list) => _SpendingSparkline(
+                              transactions: list,
+                              period: period,
                             ),
+                            loading: () => const SizedBox(height: 100),
+                            error: (_, _) => const SizedBox(height: 100),
                           ),
                           const SizedBox(height: 8),
                           Row(
@@ -145,7 +140,7 @@ class HomeScreen extends ConsumerWidget {
                       padding: const EdgeInsets.symmetric(
                         horizontal: AppConstants.pagePadding,
                       ),
-                      child: GlassCard(
+                      child: SurfaceCard(
                         child: Center(
                           child: Text(
                             'No transactions in ${PeriodDropdown.labels[period]!.toLowerCase()}',
@@ -354,51 +349,6 @@ class _MonthSeparator extends StatelessWidget {
   }
 }
 
-class _Header extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final palette = AppThemeColors.of(context);
-    return Row(
-      children: [
-        Container(
-          width: 44,
-          height: 44,
-          decoration: BoxDecoration(
-            color: AppColors.primary.withValues(alpha: 0.25),
-            borderRadius: BorderRadius.circular(14),
-          ),
-          child: const Icon(Icons.person_outline, color: AppColors.primary),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Welcome back',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: palette.textSecondary,
-                    ),
-              ),
-              Text(
-                'Your wallet',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
-              ),
-            ],
-          ),
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.notifications_none_rounded),
-          color: palette.textSecondary,
-        ),
-      ],
-    );
-  }
-}
-
 class _DeltaChip extends StatelessWidget {
   const _DeltaChip({required this.label, required this.positive});
 
@@ -423,7 +373,7 @@ class _DeltaChip extends StatelessWidget {
   }
 }
 
-/// Sparkline of **instantaneous spending** (expenses per day/bucket) over [period].
+/// Sparkline of spending and income per day/bucket over [period].
 ///
 /// The big "Your spending" total above stays period-cumulative; this chart is not.
 class _SpendingSparkline extends StatelessWidget {
@@ -438,15 +388,66 @@ class _SpendingSparkline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = AppThemeColors.of(context);
+    final incomeColor = AppColors.incomeOf(context);
     final series = _buildSpendingSeries(transactions, period);
-    final spots = series.spots;
-    final lastIndex = spots.length - 1;
+    final expenseSpots = series.expenseSpots;
+    final incomeSpots = series.incomeSpots;
+    final lastIndex = expenseSpots.length - 1;
 
-    // Flat zero line when there is no spending — never invent placeholder values.
-    final maxY = spots.fold<double>(0, (m, s) => s.y > m ? s.y : m);
+    // Shared scale so the two lines can be compared. Flat zero when both are empty.
+    final expenseMax =
+        expenseSpots.fold<double>(0, (m, s) => s.y > m ? s.y : m);
+    final incomeMax = incomeSpots.fold<double>(0, (m, s) => s.y > m ? s.y : m);
+    final showIncome = incomeMax > 0;
+    final maxY = expenseMax > incomeMax ? expenseMax : incomeMax;
     final chartMaxY = maxY <= 0 ? 1.0 : maxY * 1.05;
 
-    return LineChart(
+    final expenseBar = LineChartBarData(
+      spots: expenseSpots,
+      isCurved: expenseSpots.length > 2 && expenseMax > 0,
+      color: AppColors.primary,
+      barWidth: 2.5,
+      isStrokeCapRound: true,
+      dotData: const FlDotData(show: false),
+      belowBarData: BarAreaData(
+        show: true,
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            AppColors.primary.withValues(alpha: 0.35),
+            AppColors.primary.withValues(alpha: 0.0),
+          ],
+        ),
+      ),
+    );
+    // Drawn first so the expense line and its fill sit in front.
+    final incomeBar = LineChartBarData(
+      spots: incomeSpots,
+      isCurved: incomeSpots.length > 2 && incomeMax > 0,
+      color: incomeColor,
+      barWidth: 2.5,
+      isStrokeCapRound: true,
+      dotData: const FlDotData(show: false),
+      belowBarData: BarAreaData(show: false),
+    );
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            const _SeriesLegend(color: AppColors.primary, label: 'Expenses'),
+            if (showIncome) ...[
+              const SizedBox(width: 14),
+              _SeriesLegend(color: incomeColor, label: 'Income'),
+            ],
+          ],
+        ),
+        const SizedBox(height: 8),
+        SizedBox(
+          height: 100,
+          child: LineChart(
       LineChartData(
         minX: 0,
         maxX: lastIndex < 1 ? 1 : lastIndex.toDouble(),
@@ -482,64 +483,100 @@ class _SpendingSparkline extends StatelessWidget {
         ),
         borderData: FlBorderData(show: false),
         lineBarsData: [
-          LineChartBarData(
-            spots: spots,
-            isCurved: spots.length > 2 && maxY > 0,
-            color: AppColors.primary,
-            barWidth: 2.5,
-            isStrokeCapRound: true,
-            dotData: const FlDotData(show: false),
-            belowBarData: BarAreaData(
-              show: true,
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  AppColors.primary.withValues(alpha: 0.35),
-                  AppColors.primary.withValues(alpha: 0.0),
-                ],
-              ),
-            ),
-          ),
+          if (showIncome) incomeBar,
+          expenseBar,
         ],
         lineTouchData: LineTouchData(
           enabled: maxY > 0,
           touchTooltipData: LineTouchTooltipData(
             getTooltipColor: (_) => palette.surfaceElevated,
-            getTooltipItems: (touched) => touched
-                .map(
-                  (s) {
-                    final i = s.x.round().clamp(0, series.bucketStarts.length - 1);
-                    final label = DateFormat('d MMM').format(series.bucketStarts[i]);
+            getTooltipItems: (touched) {
+              final ordered = [...touched]..sort((a, b) {
+                  final aIncome = showIncome && a.barIndex == 0;
+                  final bIncome = showIncome && b.barIndex == 0;
+                  if (aIncome == bIncome) return 0;
+                  return aIncome ? 1 : -1;
+                });
+              return [
+                for (var k = 0; k < ordered.length; k++)
+                  () {
+                    final s = ordered[k];
+                    final i = s.x
+                        .round()
+                        .clamp(0, series.bucketStarts.length - 1);
+                    final date =
+                        DateFormat('d MMM').format(series.bucketStarts[i]);
+                    final isIncome = showIncome && s.barIndex == 0;
+                    final name = isIncome ? 'Income' : 'Expenses';
+                    final prefix = k == 0 ? '$date\n' : '';
                     return LineTooltipItem(
-                      '$label\n${CurrencyFormatter.format(s.y)}',
+                      '$prefix$name ${CurrencyFormatter.format(s.y)}',
                       TextStyle(
-                        color: palette.textPrimary,
+                        color: isIncome ? incomeColor : AppColors.primary,
                         fontWeight: FontWeight.w600,
                         fontSize: 12,
                       ),
                     );
-                  },
-                )
-                .toList(),
+                  }(),
+              ];
+            },
           ),
         ),
       ),
+        ),
+        ),
+      ],
+    );
+  }
+}
+
+class _SeriesLegend extends StatelessWidget {
+  const _SeriesLegend({required this.color, required this.label});
+
+  final Color color;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final palette = AppThemeColors.of(context);
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 14,
+          height: 3,
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(2),
+          ),
+        ),
+        const SizedBox(width: 6),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 11,
+            fontWeight: FontWeight.w600,
+            color: palette.textSecondary,
+          ),
+        ),
+      ],
     );
   }
 }
 
 class _SpendingSeries {
   const _SpendingSeries({
-    required this.spots,
+    required this.expenseSpots,
+    required this.incomeSpots,
     required this.bucketStarts,
   });
 
-  final List<FlSpot> spots;
+  final List<FlSpot> expenseSpots;
+  final List<FlSpot> incomeSpots;
   final List<DateTime> bucketStarts;
 }
 
-/// Builds **per-bucket** (instantaneous) expense spots for the home sparkline.
+/// Builds per-bucket expense and income spots for the home sparkline.
 _SpendingSeries _buildSpendingSeries(
   List<Transaction> transactions,
   ReportPeriod period,
@@ -571,9 +608,9 @@ _SpendingSeries _buildSpendingSeries(
 
   final n = bucketStarts.length;
   final spentInBucket = List<double>.filled(n, 0);
+  final incomeInBucket = List<double>.filled(n, 0);
 
   for (final t in transactions) {
-    if (!t.isExpense) continue;
     final day = DateTime(t.date.year, t.date.month, t.date.day);
     if (day.isBefore(start) || day.isAfter(end)) continue;
 
@@ -586,15 +623,23 @@ _SpendingSeries _buildSpendingSeries(
         break;
       }
     }
-    spentInBucket[idx] += t.amount;
+    if (t.isExpense) {
+      spentInBucket[idx] += t.amount;
+    } else if (t.isIncome) {
+      incomeInBucket[idx] += t.amount;
+    }
   }
 
-  // Instantaneous: each point is spend in that day/week only (not running total).
-  final spots = <FlSpot>[
-    for (var i = 0; i < n; i++) FlSpot(i.toDouble(), spentInBucket[i]),
-  ];
-
-  return _SpendingSeries(spots: spots, bucketStarts: bucketStarts);
+  // Each point is that day/week only, not a running total.
+  return _SpendingSeries(
+    expenseSpots: [
+      for (var i = 0; i < n; i++) FlSpot(i.toDouble(), spentInBucket[i]),
+    ],
+    incomeSpots: [
+      for (var i = 0; i < n; i++) FlSpot(i.toDouble(), incomeInBucket[i]),
+    ],
+    bucketStarts: bucketStarts,
+  );
 }
 
 DateTime _sparklineStart(ReportPeriod period, DateTime end) {

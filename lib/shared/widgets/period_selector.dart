@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/di/providers.dart';
 import '../../core/theme/app_colors.dart';
-import 'glass_card.dart';
+import 'surface_card.dart';
 
 class PeriodSelector extends StatelessWidget {
   const PeriodSelector({
@@ -36,8 +36,8 @@ class PeriodSelector extends StatelessWidget {
           ]
         : ReportPeriod.values;
 
-    return GlassCard(
-      depth: GlassDepth.inset,
+    return SurfaceCard(
+      depth: SurfaceDepth.inset,
       padding: const EdgeInsets.all(4),
       borderRadius: BorderRadius.circular(24),
       child: Row(

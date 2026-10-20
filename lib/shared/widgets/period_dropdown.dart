@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/di/providers.dart';
 import '../../core/theme/app_colors.dart';
-import 'glass_card.dart';
+import 'surface_card.dart';
 
 /// Compact period menu (This week / month / 3M / …) used on Home and Stats.
 class PeriodDropdown extends StatelessWidget {
@@ -42,8 +42,8 @@ class PeriodDropdown extends StatelessWidget {
             ),
           )
           .toList(),
-      child: GlassCard(
-        depth: GlassDepth.inset,
+      child: SurfaceCard(
+        depth: SurfaceDepth.inset,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         borderRadius: BorderRadius.circular(16),
         child: Row(

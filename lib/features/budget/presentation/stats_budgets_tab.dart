@@ -208,7 +208,7 @@ class _BudgetProgressCard extends StatelessWidget {
     final remaining = hasLimit ? (limit - data.spent) : null;
 
     final card = Material(
-      color: palette.glassFill,
+      color: palette.surface,
       borderRadius: BorderRadius.circular(16),
       child: InkWell(
         onTap: onTap,

@@ -14,7 +14,7 @@ import '../../../core/storage/transaction_csv_export.dart';
 import '../../../core/storage/transaction_csv_import.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/theme_mode_provider.dart';
-import '../../../shared/widgets/glass_card.dart';
+import '../../../shared/widgets/surface_card.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
@@ -306,7 +306,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                   ),
             ),
             const SizedBox(height: 24),
-            GlassCard(
+            SurfaceCard(
               child: Column(
                 children: [
                   SwitchListTile(
@@ -356,7 +356,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            GlassCard(
+            SurfaceCard(
               child: Column(
                 children: [
                   _SettingsTile(
@@ -384,7 +384,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            GlassCard(
+            SurfaceCard(
               child: Column(
                 children: [
                   _SettingsTile(
@@ -404,7 +404,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            GlassCard(
+            SurfaceCard(
               child: Column(
                 children: [
                   _SettingsTile(

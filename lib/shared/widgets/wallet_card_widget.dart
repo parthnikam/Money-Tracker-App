@@ -5,11 +5,7 @@ import '../../features/cards/domain/wallet_card.dart';
 
 /// Large payment card — layout inspired by `ui_design/wallet.png`.
 class WalletCardWidget extends StatelessWidget {
-  const WalletCardWidget({
-    super.key,
-    required this.card,
-    this.onTap,
-  });
+  const WalletCardWidget({super.key, required this.card, this.onTap});
 
   final WalletCard card;
   final VoidCallback? onTap;
@@ -81,22 +77,31 @@ class WalletCardWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 8),
-                Text(
-                  card.brand.toLowerCase(),
-                  style: TextStyle(
-                    color: Colors.white.withValues(alpha: 0.95),
-                    fontWeight: FontWeight.w600,
-                    fontSize: 13,
-                    letterSpacing: -0.2,
+                Expanded(
+                  child: Text(
+                    card.issuerLabel,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: Colors.white.withValues(alpha: 0.95),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 13,
+                      letterSpacing: -0.2,
+                    ),
                   ),
                 ),
-                const Spacer(),
-                Text(
-                  card.name,
-                  style: TextStyle(
-                    color: Colors.white.withValues(alpha: 0.92),
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
+                const SizedBox(width: 8),
+                Flexible(
+                  child: Text(
+                    card.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.end,
+                    style: TextStyle(
+                      color: Colors.white.withValues(alpha: 0.92),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ],

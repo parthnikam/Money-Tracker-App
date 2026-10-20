@@ -20,7 +20,7 @@ A clean, private, local-first personal finance app built with Flutter.
 | Navigation | go_router |
 | Storage | Hive (local) |
 | Charts | fl_chart |
-| UI | Material 3 + glass cards |
+| UI | Material 3 + solid surface cards |
 
 ## Architecture
 
@@ -47,7 +47,7 @@ First launch starts empty: default categories and one zero-balance wallet only â
 ## Design
 
 - Black `#070600`, white `#F7F7FF`, accent `#ea526f`
-- Glass cards (inset / outset), no borders
+- Solid surface cards (inset / outset), no borders
 - Floating glass bottom navigation
 - Smooth fade/slide transitions
 - Reference screenshots in `ui_design/`

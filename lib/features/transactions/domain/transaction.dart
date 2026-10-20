@@ -27,6 +27,9 @@ class Transaction {
   bool get isExpense => type == TransactionType.expense;
   bool get isIncome => type == TransactionType.income;
 
+  /// Signed effect on the linked wallet. Income adds, expense subtracts.
+  double get balanceDelta => isIncome ? amount : -amount;
+
   Transaction copyWith({
     String? id,
     String? title,

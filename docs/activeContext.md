@@ -3,7 +3,7 @@
 > Update this file when starting a new task or finishing a meaningful chunk of work.
 
 ## Current focus
-CSV **import** (append-only) lives next to export: `TransactionCsvImport` + Settings tile. Uses export column format; skips existing ids; updates card balances.
+Cards can be edited, given a bank name, and removed. Panels are solid `SurfaceCard`s (no gradient, shadow, or blur) so lists stay smooth while scrolling. Tab shell uses `PageView` for swipe between Home / Stats / Cards / Settings.
 
 ## Recent decisions
 - **Hive** (not Isar) for v0 local storage — simpler setup, map-backed entities.
@@ -15,9 +15,10 @@ CSV **import** (append-only) lives next to export: `TransactionCsvImport` + Sett
 ## Working notes for agents
 1. Always read `AGENTS.md` + `docs/uiRequirements.md` before UI changes.
 2. Business logic stays out of widgets; use domain + Riverpod providers.
-3. When adding screens, reuse `GlassCard`, `GlassBottomNav`, `TransactionTile`, etc.
+3. When adding screens, reuse `SurfaceCard`, `GlassBottomNav`, `TransactionTile`, etc.
 4. Period filtering already lives in `reportPeriodProvider` / `filteredTransactionsProvider` — extend those rather than re-filtering ad hoc.
 5. After code changes: `flutter analyze` (must be clean) and smoke-test Home → Add tx → Stats.
+6. Do not put gradients, blurred shadows, or `BackdropFilter` back on cards. Buttons and the nav may keep their existing fills.
 
 ## Open questions / product choices (not blocked)
 - Multi-currency vs single default currency

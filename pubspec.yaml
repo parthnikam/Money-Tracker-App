@@ -40,29 +40,29 @@ flutter:
   uses-material-design: true
   assets:
     - assets/logo.png
-    - assets/logo.ico
 
-# App launcher icons from assets/logo.ico (via assets/app_icon.png export).
+# Launcher icons from assets/logo.png.
 # Regenerate with: dart run flutter_launcher_icons
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: assets/app_icon.png
+  image_path: assets/logo.png
   adaptive_icon_background: "#F7F7FF"
-  adaptive_icon_foreground: assets/app_icon.png
+  adaptive_icon_foreground: assets/logo.png
   remove_alpha_ios: true
+  background_color_ios: "#F7F7FF"
   web:
     generate: true
-    image_path: assets/app_icon.png
+    image_path: assets/logo.png
     background_color: "#F7F7FF"
     theme_color: "#ea526f"
   windows:
     generate: true
-    image_path: assets/logo.ico
+    image_path: assets/logo.png
     icon_size: 256
   macos:
     generate: true
-    image_path: assets/app_icon.png
+    image_path: assets/logo.png
 
 # Native launch splash (brand white #F7F7FF + logo only).
 # Regenerate with: dart run flutter_native_splash:create

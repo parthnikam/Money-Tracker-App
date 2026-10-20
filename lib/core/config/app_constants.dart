@@ -3,7 +3,8 @@ abstract final class AppConstants {
   /// Default display currency symbol; prefer [CurrencyFormatter.symbol].
   static const String currencySymbol = '\$';
 
-  /// Brand logo asset (`logo.ico` is used for desktop window icons only).
+  /// Brand logo. Launcher icons, the site icon, and the native splash are
+  /// generated from this file.
   static const String logoAsset = 'assets/logo.png';
 
   /// iOS continuous-corner-ish radii.

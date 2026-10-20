@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -41,91 +39,90 @@ class GlassBottomNav extends StatelessWidget {
         heightFactor: 1,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(40),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 28, sigmaY: 28),
-            child: Container(
-              height: 58,
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
-                color: isLight
-                    ? const Color(0xE6121212)
-                    : const Color(0xE60A0A0A),
-                border: Border.all(
-                  color: Colors.white.withValues(alpha: 0.08),
-                  width: 0.5,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.35),
-                    blurRadius: 24,
-                    offset: const Offset(0, 10),
-                  ),
-                ],
+          child: Container(
+            height: 58,
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(40),
+              // Opaque on purpose. A live blur under this pill re-samples
+              // every scroll frame. The fill is already a near-solid dark pill.
+              color: isLight
+                  ? const Color(0xFF121212)
+                  : const Color(0xFF0A0A0A),
+              border: Border.all(
+                color: Colors.white.withValues(alpha: 0.08),
+                width: 0.5,
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: List.generate(items.length, (i) {
-                  final item = items[i];
-                  final selected = i == currentIndex;
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 2),
-                    child: GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      onTap: () {
-                        if (i != currentIndex) {
-                          HapticFeedback.selectionClick();
-                          onTap(i);
-                        }
-                      },
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 240),
-                        curve: Curves.easeOutCubic,
-                        height: 46,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: selected ? 16 : 14,
-                        ),
-                        decoration: BoxDecoration(
-                          color: selected ? Colors.white : Colors.transparent,
-                          borderRadius: BorderRadius.circular(28),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              selected
-                                  ? (item.activeIcon ?? item.icon)
-                                  : item.icon,
-                              size: 22,
-                              color: selected
-                                  ? AppColors.black
-                                  : Colors.white.withValues(alpha: 0.72),
-                            ),
-                            AnimatedSize(
-                              duration: const Duration(milliseconds: 240),
-                              curve: Curves.easeOutCubic,
-                              child: selected
-                                  ? Padding(
-                                      padding: const EdgeInsets.only(left: 8),
-                                      child: Text(
-                                        item.label,
-                                        style: const TextStyle(
-                                          color: AppColors.black,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 13,
-                                          letterSpacing: -0.2,
-                                        ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.35),
+                  blurRadius: 24,
+                  offset: const Offset(0, 10),
+                ),
+              ],
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: List.generate(items.length, (i) {
+                final item = items[i];
+                final selected = i == currentIndex;
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 2),
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () {
+                      if (i != currentIndex) {
+                        HapticFeedback.selectionClick();
+                        onTap(i);
+                      }
+                    },
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 240),
+                      curve: Curves.easeOutCubic,
+                      height: 46,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: selected ? 16 : 14,
+                      ),
+                      decoration: BoxDecoration(
+                        color: selected ? Colors.white : Colors.transparent,
+                        borderRadius: BorderRadius.circular(28),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            selected
+                                ? (item.activeIcon ?? item.icon)
+                                : item.icon,
+                            size: 22,
+                            color: selected
+                                ? AppColors.black
+                                : Colors.white.withValues(alpha: 0.72),
+                          ),
+                          AnimatedSize(
+                            duration: const Duration(milliseconds: 240),
+                            curve: Curves.easeOutCubic,
+                            child: selected
+                                ? Padding(
+                                    padding: const EdgeInsets.only(left: 8),
+                                    child: Text(
+                                      item.label,
+                                      style: const TextStyle(
+                                        color: AppColors.black,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 13,
+                                        letterSpacing: -0.2,
                                       ),
-                                    )
-                                  : const SizedBox.shrink(),
-                            ),
-                          ],
-                        ),
+                                    ),
+                                  )
+                                : const SizedBox.shrink(),
+                          ),
+                        ],
                       ),
                     ),
-                  );
-                }),
-              ),
+                  ),
+                );
+              }),
             ),
           ),
         ),

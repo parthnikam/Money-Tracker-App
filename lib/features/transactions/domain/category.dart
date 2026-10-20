@@ -54,3 +54,31 @@ class Category {
     );
   }
 }
+
+/// Everyday categories stay first. Everything else follows A–Z.
+const mainCategoryOrder = <String>[
+  'food',
+  'transportation',
+  'personal care',
+  'education',
+  'health',
+];
+
+int categoryDisplayRank(Category category) {
+  final name = category.name.trim().toLowerCase();
+  if (name == 'transport') return mainCategoryOrder.indexOf('transportation');
+  final index = mainCategoryOrder.indexOf(name);
+  return index >= 0 ? index : mainCategoryOrder.length;
+}
+
+extension CategoryListX on List<Category> {
+  List<Category> sortedForDisplay() {
+    final copy = List<Category>.of(this);
+    copy.sort((a, b) {
+      final rank = categoryDisplayRank(a).compareTo(categoryDisplayRank(b));
+      if (rank != 0) return rank;
+      return a.name.toLowerCase().compareTo(b.name.toLowerCase());
+    });
+    return copy;
+  }
+}

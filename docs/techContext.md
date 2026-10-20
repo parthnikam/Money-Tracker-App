@@ -64,7 +64,7 @@ flutter run
 
 ## Known technical notes
 - Dynamic Material icons from stored code points use `iconFromCodePoint` (`lib/core/utils/icon_utils.dart`) to satisfy analyzer rules.
-- Glass uses `BackdropFilter` — fine for modern devices; avoid stacking dozens of blurs on one scroll frame.
+- Cards are a single opaque color (`SurfaceCard`). Do not add a gradient, a blurred shadow, or `BackdropFilter` to them. Live blur and card shadows repaint on every scroll frame and drop mobile FPS. Buttons, the FAB, and the bottom nav keep their own fills and also must not use `BackdropFilter`.
 - Card balance updates happen in the add-transaction flow (presentation currently coordinates repo calls). Longer-term, consider a domain use-case so balance rules stay out of widgets.
 
 ## Optional future stack

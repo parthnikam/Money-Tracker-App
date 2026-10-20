@@ -188,6 +188,8 @@ class _ExpensesTab extends ConsumerWidget {
                     total: total,
                     categoryMap: map,
                     categories: cats,
+                    selectedCategoryId: selectedCategoryId,
+                    onCategoryTap: (id) => _toggleCategory(ref, id),
                   ),
                   loading: () => const SizedBox(
                     height: 220,
@@ -252,6 +254,8 @@ class _ExpensesTab extends ConsumerWidget {
                       ),
                       child: _CategoryPaymentBlock(
                         group: group,
+                        selected: group.categoryId == selectedCategoryId,
+                        onSelect: () => _toggleCategory(ref, group.categoryId),
                         onTxTap: (tx) =>
                             context.push('/transactions/${tx.id}'),
                         onTxDismiss: (tx) {
@@ -335,14 +339,24 @@ List<_CategoryGroup> _groupByCategory({
   return groups;
 }
 
+void _toggleCategory(WidgetRef ref, String? id) {
+  final current = ref.read(selectedStatsCategoryIdProvider);
+  ref.read(selectedStatsCategoryIdProvider.notifier).state =
+      (id == null || id == current) ? null : id;
+}
+
 class _CategoryPaymentBlock extends StatelessWidget {
   const _CategoryPaymentBlock({
     required this.group,
+    required this.selected,
+    required this.onSelect,
     required this.onTxTap,
     required this.onTxDismiss,
   });
 
   final _CategoryGroup group;
+  final bool selected;
+  final VoidCallback onSelect;
   final ValueChanged<Transaction> onTxTap;
   final ValueChanged<Transaction> onTxDismiss;
 
@@ -353,30 +367,40 @@ class _CategoryPaymentBlock extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 4, left: 2, right: 2),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  group.name,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: -0.3,
-                        color: palette.textPrimary,
-                      ),
-                ),
+        Material(
+          color: selected
+              ? group.color.withValues(alpha: 0.16)
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(12),
+          child: InkWell(
+            onTap: onSelect,
+            borderRadius: BorderRadius.circular(12),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      group.name,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: -0.3,
+                            color: selected ? group.color : palette.textPrimary,
+                          ),
+                    ),
+                  ),
+                  Text(
+                    CurrencyFormatter.format(group.total),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 16,
+                      letterSpacing: -0.2,
+                      color: selected ? group.color : palette.textSecondary,
+                    ),
+                  ),
+                ],
               ),
-              Text(
-                CurrencyFormatter.format(group.total),
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 16,
-                  letterSpacing: -0.2,
-                  color: palette.textSecondary,
-                ),
-              ),
-            ],
+            ),
           ),
         ),
         ...group.transactions.map(
@@ -400,11 +424,15 @@ class _DialWithLegend extends StatelessWidget {
     required this.total,
     required this.categoryMap,
     required this.categories,
+    required this.selectedCategoryId,
+    required this.onCategoryTap,
   });
 
   final double total;
   final Map<String, double> categoryMap;
   final List<Category> categories;
+  final String? selectedCategoryId;
+  final ValueChanged<String?> onCategoryTap;
 
   @override
   Widget build(BuildContext context) {
@@ -426,12 +454,18 @@ class _DialWithLegend extends StatelessWidget {
                 child: _ExpenseDial(
                   total: total,
                   segments: segments,
+                  selectedCategoryId: selectedCategoryId,
+                  onCategoryTap: onCategoryTap,
                 ),
               ),
               const SizedBox(width: 12),
               Expanded(
                 flex: 4,
-                child: _CategoryLegend(segments: segments),
+                child: _CategoryLegend(
+                  segments: segments,
+                  selectedCategoryId: selectedCategoryId,
+                  onCategoryTap: onCategoryTap,
+                ),
               ),
             ],
           );
@@ -439,9 +473,18 @@ class _DialWithLegend extends StatelessWidget {
 
         return Column(
           children: [
-            _ExpenseDial(total: total, segments: segments),
+            _ExpenseDial(
+              total: total,
+              segments: segments,
+              selectedCategoryId: selectedCategoryId,
+              onCategoryTap: onCategoryTap,
+            ),
             const SizedBox(height: 12),
-            _CategoryLegend(segments: segments),
+            _CategoryLegend(
+              segments: segments,
+              selectedCategoryId: selectedCategoryId,
+              onCategoryTap: onCategoryTap,
+            ),
           ],
         );
       },
@@ -451,9 +494,15 @@ class _DialWithLegend extends StatelessWidget {
 
 /// Color swatch legend for dial segments (name + amount).
 class _CategoryLegend extends StatelessWidget {
-  const _CategoryLegend({required this.segments});
+  const _CategoryLegend({
+    required this.segments,
+    required this.selectedCategoryId,
+    required this.onCategoryTap,
+  });
 
   final List<_ArcSegment> segments;
+  final String? selectedCategoryId;
+  final ValueChanged<String?> onCategoryTap;
 
   @override
   Widget build(BuildContext context) {
@@ -472,39 +521,61 @@ class _CategoryLegend extends StatelessWidget {
       children: [
         for (final s in segments)
           Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Row(
-              children: [
-                Container(
-                  width: 10,
-                  height: 10,
-                  decoration: BoxDecoration(
-                    color: s.color,
-                    shape: BoxShape.circle,
+            padding: const EdgeInsets.only(bottom: 4),
+            child: Material(
+              color: s.categoryId == selectedCategoryId
+                  ? s.color.withValues(alpha: 0.18)
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(10),
+              child: InkWell(
+                onTap: () => onCategoryTap(s.categoryId),
+                borderRadius: BorderRadius.circular(10),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 6,
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: s.color,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          s.name,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: s.categoryId == selectedCategoryId
+                                ? FontWeight.w700
+                                : FontWeight.w500,
+                            color: s.categoryId == selectedCategoryId
+                                ? s.color
+                                : palette.textSecondary,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        CurrencyFormatter.format(s.amount),
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          color: s.categoryId == selectedCategoryId
+                              ? s.color
+                              : palette.textPrimary,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    s.name,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
-                      color: palette.textSecondary,
-                    ),
-                  ),
-                ),
-                Text(
-                  CurrencyFormatter.format(s.amount),
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                    color: palette.textPrimary,
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
       ],
@@ -512,15 +583,19 @@ class _CategoryLegend extends StatelessWidget {
   }
 }
 
-/// Dial with hover tooltips (no tap-to-filter).
+/// Dial: hover previews a slice; a tap keeps that category highlighted.
 class _ExpenseDial extends StatefulWidget {
   const _ExpenseDial({
     required this.total,
     required this.segments,
+    required this.selectedCategoryId,
+    required this.onCategoryTap,
   });
 
   final double total;
   final List<_ArcSegment> segments;
+  final String? selectedCategoryId;
+  final ValueChanged<String?> onCategoryTap;
 
   @override
   State<_ExpenseDial> createState() => _ExpenseDialState();
@@ -533,9 +608,10 @@ class _ExpenseDialState extends State<_ExpenseDial> {
   @override
   Widget build(BuildContext context) {
     final palette = AppThemeColors.of(context);
-    final hovered = _hoveredId == null
+    final highlightId = _hoveredId ?? widget.selectedCategoryId;
+    final hovered = highlightId == null
         ? null
-        : widget.segments.where((s) => s.categoryId == _hoveredId).firstOrNull;
+        : widget.segments.where((s) => s.categoryId == highlightId).firstOrNull;
 
     return SizedBox(
       height: 220,
@@ -544,7 +620,17 @@ class _ExpenseDialState extends State<_ExpenseDial> {
           final size = Size(constraints.maxWidth, 220);
           final geometry = _DialGeometry.fromSize(size);
 
-          return MouseRegion(
+          return GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTapUp: (details) {
+              final id = _hitTestSegment(
+                details.localPosition,
+                geometry,
+                widget.segments,
+              );
+              widget.onCategoryTap(id);
+            },
+            child: MouseRegion(
             onHover: (event) {
               final id = _hitTestSegment(
                 event.localPosition,
@@ -579,7 +665,7 @@ class _ExpenseDialState extends State<_ExpenseDial> {
                     painter: _ArcPainter(
                       total: widget.total,
                       segments: widget.segments,
-                      hoveredCategoryId: _hoveredId,
+                      hoveredCategoryId: highlightId,
                       trackColor: palette.glassFillStrong,
                       geometry: geometry,
                     ),
@@ -625,7 +711,7 @@ class _ExpenseDialState extends State<_ExpenseDial> {
                     ),
                   ),
                 ),
-                if (hovered != null && _hoverLocal != null)
+                if (_hoveredId != null && hovered != null && _hoverLocal != null)
                   Positioned(
                     left: (_hoverLocal!.dx + 14)
                         .clamp(0.0, math.max(0.0, size.width - 160)),
@@ -662,6 +748,7 @@ class _ExpenseDialState extends State<_ExpenseDial> {
                     ),
                   ),
               ],
+            ),
             ),
           );
         },

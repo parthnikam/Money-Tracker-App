@@ -75,18 +75,19 @@ class _CategoryPickerSheet extends ConsumerWidget {
                       ),
                     );
                   }
+                  final ordered = list.sortedForDisplay();
                   return GridView.builder(
-                    padding: const EdgeInsets.fromLTRB(16, 2, 16, 8),
+                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 4,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 8,
-                      childAspectRatio: 0.78,
+                      mainAxisSpacing: 2,
+                      crossAxisSpacing: 6,
+                      mainAxisExtent: 82,
                     ),
-                    itemCount: list.length,
+                    itemCount: ordered.length,
                     itemBuilder: (context, i) {
-                      final c = list[i];
+                      final c = ordered[i];
                       final selected = c.id == selectedId;
                       return _CategoryGridItem(
                         category: c,
@@ -262,7 +263,7 @@ class _CategoryGridItem extends StatelessWidget {
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           AnimatedContainer(
             duration: const Duration(milliseconds: 160),
@@ -297,7 +298,7 @@ class _CategoryGridItem extends StatelessWidget {
               size: 22,
             ),
           ),
-          const SizedBox(height: 6),
+          const SizedBox(height: 4),
           Text(
             category.name,
             textAlign: TextAlign.center,

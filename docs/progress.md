@@ -65,17 +65,46 @@
 - Removed demo transactions, budgets, savings, and second wallet from seed
 - First open: default categories + one Main Wallet at ₹0 only
 
+### 2026-10-20 — Matching page titles
+- Cards title uses the same `headlineSmall` style as Stats and Settings
+- Home no longer shows “Welcome back” or the person mark
+
+### 2026-10-20 — Brand logo
+- Launcher icons, the website favicon and manifest icons, and the Android, iOS, and web splash are generated from `assets/logo.png`
+
+### 2026-10-20 — Home header and stats category highlight
+- Home header is the avatar and “Welcome back”. The wallet title and notification button are gone
+- Stats: tap a legend row, dial slice, or category heading to highlight it. Tap again, or tap the dial outside a slice, to clear
+
+### 2026-10-20 — Solid cards
+- Replaced `GlassCard` with `SurfaceCard`: one opaque surface color, no gradient, shadow, or blur
+- Settings groups, the home spending card, categories, budgets, the period control, and Stats budget rows all use it
+- Wallet payment cards stay gradient tiles
+
+### 2026-10-20 — Card edit/remove, fast glass
+- Edit card still opens from the pencil and from tapping the card; form now includes **bank name** (saved on the card, shown on the face)
+- Remove card from the Cards tab trash icon and from **Remove card** on the edit form. Transactions stay; if the removed card was primary, the next card becomes primary
+- Glass cards, buttons, FAB, and bottom nav no longer use `BackdropFilter`. Frost is an opaque top-lit gradient so scrolling stays smooth on mobile
+- Expense detail is a compact form (no glass cards): amount, type, title, category, card, date, time, and note are editable. Saving corrects the wallet balance
+
+### 2026-07-19 — Cards edit, tab swipe, Stats polish
+- Edit card flow: `/cards/edit/:id` reuses add form; entry from Cards edit icon + tap card
+- Main tabs swipeable via `PageView` in `AppShell` (synced with bottom nav + go_router)
+- Nav labels: **Stats**, **Cards**
+- Stats: full-circle dial; legend/segment tap focuses category (highlight + center label); tap away clears
+- Stats: removed swipe-to-delete on transaction rows
+
 ---
 
 ## Pending
 
 ### Product / UX
-- [ ] Edit existing transaction (and reverse/adjust card balance correctly)
+- [x] Edit existing transaction (and reverse/adjust card balance correctly)
 - [ ] Delete transaction from more entry points (with balance correction)
-- [ ] Edit/delete cards and savings plans
+- [x] Edit cards (info, bank name, remove); [ ] delete savings plans
 - [ ] Budget progress widgets on Home
 - [ ] Richer empty states and first-run without only demo seed (optional onboarding)
-- [ ] Pull category filters / search on Stats
+- [x] Category focus on Stats legend/dial
 - [ ] Accessibility pass (semantics, larger text)
 
 ### Technical

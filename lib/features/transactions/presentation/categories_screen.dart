@@ -6,7 +6,7 @@ import 'package:uuid/uuid.dart';
 import '../../../core/di/providers.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../shared/widgets/glass_button.dart';
-import '../../../shared/widgets/glass_card.dart';
+import '../../../shared/widgets/surface_card.dart';
 import '../domain/category.dart';
 
 class CategoriesScreen extends ConsumerWidget {
@@ -33,44 +33,54 @@ class CategoriesScreen extends ConsumerWidget {
       body: categories.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('$e')),
-        data: (list) => ListView.separated(
-          padding: const EdgeInsets.fromLTRB(20, 8, 20, 40),
-          itemCount: list.length,
-          separatorBuilder: (_, _) => const SizedBox(height: 8),
-          itemBuilder: (context, i) {
-            final c = list[i];
-            return GlassCard(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-              child: ListTile(
-                contentPadding: EdgeInsets.zero,
-                leading: CircleAvatar(
-                  backgroundColor: AppColors.primary.withValues(alpha: 0.2),
-                  child: Icon(c.icon, color: AppColors.primary, size: 20),
+        data: (list) {
+          final ordered = list.sortedForDisplay();
+          return ListView.separated(
+            padding: const EdgeInsets.fromLTRB(20, 8, 20, 40),
+            itemCount: ordered.length,
+            separatorBuilder: (_, _) => const SizedBox(height: 4),
+            itemBuilder: (context, i) {
+              final c = ordered[i];
+              return SurfaceCard(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+                child: ListTile(
+                  visualDensity: VisualDensity.compact,
+                  minVerticalPadding: 0,
+                  contentPadding: EdgeInsets.zero,
+                  leading: CircleAvatar(
+                    backgroundColor: AppColors.primary.withValues(alpha: 0.2),
+                    child: Icon(c.icon, color: AppColors.primary, size: 20),
+                  ),
+                  title: Text(
+                    c.name,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  subtitle: c.isDefault
+                      ? Text(
+                          'Default',
+                          style: TextStyle(
+                            color: AppThemeColors.of(context).textTertiary,
+                            fontSize: 12,
+                          ),
+                        )
+                      : null,
+                  trailing: c.isDefault
+                      ? null
+                      : IconButton(
+                          icon: Icon(
+                            Icons.delete_outline,
+                            color: AppColors.expenseOf(context),
+                          ),
+                          onPressed: () => ref
+                              .read(categoryRepositoryProvider)
+                              .delete(c.id),
+                        ),
                 ),
-                title: Text(c.name, style: const TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: c.isDefault
-                    ? Text(
-                        'Default',
-                        style: TextStyle(
-                          color: AppThemeColors.of(context).textTertiary,
-                          fontSize: 12,
-                        ),
-                      )
-                    : null,
-                trailing: c.isDefault
-                    ? null
-                    : IconButton(
-                        icon: Icon(
-                          Icons.delete_outline,
-                          color: AppColors.expenseOf(context),
-                        ),
-                        onPressed: () =>
-                            ref.read(categoryRepositoryProvider).delete(c.id),
-                      ),
-              ),
-            );
-          },
-        ),
+              );
+            },
+          );
+        },
       ),
     );
   }

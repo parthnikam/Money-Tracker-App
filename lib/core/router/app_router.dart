@@ -76,6 +76,8 @@ GoRouter createAppRouter() {
           final id = state.pathParameters['id']!;
           return CustomTransitionPage(
             key: state.pageKey,
+            transitionDuration: const Duration(milliseconds: 180),
+            reverseTransitionDuration: const Duration(milliseconds: 140),
             child: TransactionDetailScreen(transactionId: id),
             transitionsBuilder: _slideUp,
           );
@@ -89,6 +91,18 @@ GoRouter createAppRouter() {
           child: const AddCardScreen(),
           transitionsBuilder: _slideUp,
         ),
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootKey,
+        path: '/cards/edit/:id',
+        pageBuilder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: AddCardScreen(cardId: id),
+            transitionsBuilder: _slideUp,
+          );
+        },
       ),
       GoRoute(
         parentNavigatorKey: _rootKey,
@@ -170,7 +184,7 @@ class AppShell extends StatelessWidget {
     NavItem(
       icon: Icons.bar_chart_outlined,
       activeIcon: Icons.bar_chart_rounded,
-      label: 'Statistic',
+      label: 'Stats',
     ),
     NavItem(
       icon: Icons.credit_card_outlined,
